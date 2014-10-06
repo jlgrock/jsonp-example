@@ -27,7 +27,7 @@ repositories {
 dependencies {
     compile(
         [group: "org.springframework.boot", name: "spring-boot-starter-web"],
-        [group: "org.springframework", name: "spring-context", version: "4.1.1.RELEASE" ],
+        [group: "org.springframework", name: "spring-context" ],
         [group: "org.codehaus.groovy", name: "groovy-all", version: "2.1.9"]
     )
     testCompile(

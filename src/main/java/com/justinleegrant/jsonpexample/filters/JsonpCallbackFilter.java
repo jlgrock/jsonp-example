@@ -21,12 +21,13 @@ import org.slf4j.LoggerFactory;
 
 public class JsonpCallbackFilter implements Filter {
 
-    private static Log logger = LogFactory.getLog(JsonpCallbackFilter.class);
+    private static Log LOGGER = LogFactory.getLog(JsonpCallbackFilter.class);
 
     public void init(FilterConfig fConfig) throws ServletException {}
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        logger.info("ENTERS filter...");
+        LOGGER.info("applying jsonp filter");
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
@@ -34,6 +35,7 @@ public class JsonpCallbackFilter implements Filter {
         Map<String, String[]> parms = httpRequest.getParameterMap();
 
         if(parms.containsKey("callback")) {
+            LOGGER.info("contains callback parameter.  Adjusting json return object.");
             OutputStream out = httpResponse.getOutputStream();
 
             GenericResponseWrapper wrapper = new GenericResponseWrapper(httpResponse);
